@@ -1,15 +1,19 @@
-import sumar from "./sumador";
+import respuesta from './bot.js';
 
-const first = document.querySelector("#primer-numero");
-const second = document.querySelector("#segundo-numero");
-const form = document.querySelector("#sumar-form");
-const div = document.querySelector("#resultado-div");
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.querySelector("#bot-form");
+    const nameInput = document.querySelector("#name-input");
+    const responseDiv = document.querySelector("#resp-div");
 
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
 
-  const firstNumber = Number.parseInt(first.value);
-  const secondNumber = Number.parseInt(second.value);
+        const name = nameInput.value.trim(); // Obtenemos el valor del input y eliminamos los espacios en blanco
 
-  div.innerHTML = "<p>" + sumar(firstNumber, secondNumber) + "</p>";
+        if (name) {
+            responseDiv.innerHTML = `<p>${respuesta(name)}</p>`;
+        } else {
+            responseDiv.innerHTML = "<p>Por favor, introduce tu nombre.</p>";
+        }
+    });
 });
