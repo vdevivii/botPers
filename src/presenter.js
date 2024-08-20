@@ -1,44 +1,30 @@
-import { respuesta, handleNameInput, handleGenderInput } from './bot.js';
+document.getElementById('bot-form').addEventListener('submit', function(event) {
+  event.preventDefault();
 
-document.addEventListener("DOMContentLoaded", () => {
-    const form = document.querySelector("#bot-form");
-    const nameSection = document.querySelector("#name-section");
-    const genderSection = document.querySelector("#gender-section");
-    const nameInput = document.querySelector("#name-input");
-    const genderInput = document.querySelector("#gender-input");
-    const responseDiv = document.querySelector("#resp-div");
+  const name = document.getElementById('name-input').value.trim();
+  const age = parseInt(document.getElementById('age-input').value.trim(), 10);
+  const gender = document.getElementById('gender-input').value.trim().toUpperCase();
+  const responseDiv = document.getElementById('resp-div');
 
+  let greeting;
 
-    const form2 = document.querySelector("#bot2-form");
-    const responseDivG = document.querySelector("#respgender-div");
-
-    let userName = '';
-
-    form.addEventListener("submit", (event) => {
-        event.preventDefault();
-
-        if (nameSection.style.display !== 'none') {
-            userName = nameInput.value.trim();
-            if (userName) {
-                responseDiv.innerHTML = `<p>${handleNameInput(userName)}</p>`;
-                nameSection.style.display = 'none';
-                genderSection.style.display = 'block';
-            } else {
-                responseDiv.innerHTML = "<p>Por favor, introduce tu nombre.</p>";
-            }
-        
-          }
-    });
-
-
-form2.addEventListener("submit", (event) => {
-if (genderSection.style.display !== 'none') {
-  const gender = genderInput.value.trim().toUpperCase();
-  if (gender === 'M' || gender === 'H') {
-    responseDivG.innerHTML = `<p>${handleGenderInput(userName, gender)}</p>`;
+  if (age >= 20) {
+    if (gender === "M") {
+      greeting = `Hola, señor ${name}`;
+    } else if (gender === "F") {
+      greeting = `Hola, señora ${name}`;
+    } else {
+      greeting = "Género no reconocido, por favor use M o F.";
+    }
   } else {
-    responseDivG.innerHTML = "<p>Por favor, introduce un género válido (M o H).</p>";
+    if (gender === "M") {
+      greeting = `Hola, señorito ${name}`;
+    } else if (gender === "F") {
+      greeting = `Hola, señorita ${name}`;
+    } else {
+      greeting = "Género no reconocido, por favor use M o F.";
+    }
   }
-}
-});
+
+  responseDiv.textContent = greeting;
 });
