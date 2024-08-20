@@ -1,16 +1,37 @@
-
-<html>
-  <body>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bot Personalizado</title>
+</head>
+<body>
     <h1>Bot Personalizado</h1>
     <form id="bot-form">
-      <label for="name">hola, cual es tu nombre?</label>
-      <input type="text" id="name-input" />
-      
-
-      <input type="submit" value="Enviar" id="resp-button" />
+        <div id="name-section">
+            <label for="name">Hola, ¿cuál es tu nombre?</label>
+            <input type="text" id="name-input" required />
+            <br><br>
+            <input type="submit" value="Enviar nombre" id="name-button" />
+        </div>
+        
     </form>
     <div id="resp-div"></div>
 
     <script type="module" src="./src/presenter.js"></script>
-  </body>
+
+    <form id="bot2-form">
+    <div id="gender-section" style="display: none;">
+      <label for="gender">¿Cuál es tu género? (M para mujer, H para hombre)</label>
+      <input type="text" id="gender-input" required />
+      <br><br>
+      <input type="submit" value="Enviar género" id="gender-button" />
+  </div>
+    </form>
+    <div id="respgender-div"></div>
+
+    <script type="module" src="./src/presenter.js"></script>
+
+</body>
 </html>
+
